@@ -2,8 +2,10 @@ var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
 var mongoose = require('mongoose');
+var shortid = require('shortid');
 
 var User = require('./models/users');
+var Goal = require('./models/goal');
 
 var dbURL = 'mongodb://hackregina:hackmebaby@ds047146.mlab.com:47146/heroku_dhxp13b4';
 
@@ -17,7 +19,7 @@ var dbURL = 'mongodb://hackregina:hackmebaby@ds047146.mlab.com:47146/heroku_dhxp
 passport.use(new Strategy({
     clientID: '1062987243814970',
     clientSecret: 'e54d86629d66f84d66b9662e44d8aec8',
-    callbackURL: "./facebook/return"
+    callbackURL: "http://localhost:3000/login/facebook/return"
   },
   function(accessToken, refreshToken, profile, done) {
   	//Check for user profile based on facebookId
@@ -109,14 +111,38 @@ app.get('/login/facebook',
 app.get('/login/facebook/return',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/profile');
   });
 
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('profile', { user: req.user });
+ });
+
+ app.get('/training',
+   require('connect-ensure-login').ensureLoggedIn(),
+   function(req, res){
+     res.render('training', { user: req.user });
   });
+
+app.post('/training',
+    require('connect-ensure-login').ensureLoggedIn(),
+    function(req, res){
+        var _goalId = shortid.generate();
+        console.log(_goalId);
+        var goal = new Goal({
+            goalId: _goalId,
+      		facebookId: req.user.facebookId,
+            name: req.body.name,
+            days: req.body.days
+  	    });
+
+  	goal.save(function(err) {
+  		if (err) console.log(err);
+  		else res.send(200, _goalId);
+  	});
+});
 
 app.use('/static', express.static(__dirname + '/static'));
 

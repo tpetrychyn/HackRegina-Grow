@@ -24,7 +24,13 @@ var userSchema = Schema({
 	},
 	email: {
 		type: String
-	}
+	},
+    height: {
+        type: String
+    },
+    weight: {
+        type: String
+    }
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -1,0 +1,182 @@
+<!--<head>
+    <% include ./header %>
+</head>
+
+<p>
+ID: <%= user.id %><br/>
+<img class="img-circle" src="<%=user.picture%>"/>
+Username: <%= user.name %><br/>
+Name: <%= user.picture %><br/>
+<% if (user.emails) { %>
+Email: <%= user.emails[0].value %><br/>
+<% } %>
+</p>
+
+<script>
+var test = "<%=user.name%>";
+</script>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Training Progress</title>
+  <head>
+      <% include ./header %>
+      <script src="./static/trees/p5.min.js"></script>
+      <style>
+      .edit form {
+          display: inline !important;
+          width: 150px;
+          height: auto;
+      }
+      .edit form input {
+          width: auto !important;
+          height: auto !important;
+      }
+      </style>
+  </head>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.specialolympics.sk.ca/"><img src="https://pbs.twimg.com/profile_images/463397113695465472/4ii75wKW.jpeg" class="media-object" style="width:40px"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="./profile">Profile</a></li>
+        <li class="active"><a href="./training">Training</a></li>
+        <li><a href="athlete_nutrition.html">Nutrition</a></li>
+        <li><a href="#">Update</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li style="font-size: 12pt; color: white;margin-top: 10px;">Public Access Code: 5xf3M8</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+        <img class="img-circle" src="<%=user.picture%>"/>
+        <br>
+        <center><h2><%= user.name %></h2>
+        <h3>Swimmer</h3>
+        <h4>Height: 5'9"</h4>
+        <h4>Weight: 175lbs</h4></center>
+    </div>
+    <div class="col-sm-7 text-left">
+        <h2>Weekly Training Progress <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" style="float: right;" data-toggle="modal" data-target="#myModal">
+  Add new
+</button></h2>
+        <text style="font-size: 9pt">Click value to edit</text>
+        <div class="well">
+        <h4><b>Goal: 5.25s 100m Run</b></h4>
+
+  	  <label>Day 1: <label class="edit" style="display: inline;">5.20s</label></label></br>
+  	  <label>Day 2: <label class="edit" style="display: inline;">5.10s</label></label></br>
+      <label>Day 3: <label class="edit" style="display: inline;">5.32s</label></label></br>
+      <label>Day 4: <label class="edit" style="display: inline;">5.0s</label></label></br>
+      <label>Day 5: <label class="edit" style="display: inline;">5.2s</label></label></br>
+  	  </div>
+  	  <div class="well">
+          <h4><b>Goal: 5x 225lb deadlift</b></h4>
+    	  <label>Day 1: 4</label></br>
+    	  <label>Day 2: 5</label></br>
+    	  <label>Day 3: 6</label></br>
+    	  <label>Day 4: 5</label></br>
+    	  <label>Day 5: 7</label></br>
+  	  </div>
+  	  <div class="well">
+          <h4><b>Goal: 5.25s 100m Run</b></h4>
+    	  <label>Day 1: 5.20s</label></br>
+    	  <label>Day 2: 5.18s</label></br>
+    	  <label>Day 3: 5.15s</label></br>
+    	  <label>Day 4: 5.15s</label></br>
+    	  <label>Day 5: 5.16s</label></br>
+  	  </div>
+  	  <div class="well">
+          <h4><b>Goal: 5.25s 100m Run</b></h4>
+    	  <label>Day 1: 5.20s</label></br>
+    	  <label>Day 2: 5.18s</label></br>
+    	  <label>Day 3: 5.15s</label></br>
+    	  <label>Day 4: 5.15s</label></br>
+    	  <label>Day 5: 5.16s</label></br>
+  	  </div>
+    </div>
+    <div class="col-sm-3 sidenav">
+        <h3>Today's Tasks</h3>
+        <div class="well" style="max-height: 800px;overflow: auto; text-align: left">
+        		<ul id="todolist" class="list-group checked-list-box">
+                  <li class="list-group-item">10 x 100m Sprint</li>
+                  <li class="list-group-item">20 Laps Swimming</li>
+                </ul>
+                <div id="addNew">
+                    <input type="text" id="addItemText" style="width: 73.3333333%; margin-right: 3px;" class="form-control add-todo col-sm-8" placeholder="Add Item"><button id="addItem" class="btn btn-success col-sm-3">Add</button>
+                </div>
+                &nbsp;<hr style="margin-top: 0px; margin-bottom: 10px;">
+                <div class="text-center">
+                    <button id="get-checked-data" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="workout-name" class="form-control-label">Goal Name</label>
+              <input type="text" class="form-control" id="goal-name">
+            </div>
+            <div class="form-group">
+              <label for="sel1">How many days a week?</label>
+              <select class="form-control" id="days-sel">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+              </select>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="add-new-goal" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./static/jeditable.min.js"></script>
+<script src="./static/training.js"></script>
+<script src="./static/dailytasks.js"></script>
+<script>
+$('.edit').editable(function(value, settings) {
+    console.log(this);
+    console.log(value);
+    console.log(settings);
+    return(value);
+ });
+</script>
