@@ -1,0 +1,77 @@
+<!--<head>
+    <% include ./header %>
+</head>
+
+<p>
+ID: <%= user.id %><br/>
+<img class="img-circle" src="<%=user.picture%>"/>
+Username: <%= user.name %><br/>
+Name: <%= user.picture %><br/>
+<% if (user.emails) { %>
+Email: <%= user.emails[0].value %><br/>
+<% } %>
+</p>
+
+<script>
+var test = "<%=user.name%>";
+</script>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Profile</title>
+  <head>
+      <% include ./header %>
+      <script src="./static/trees/p5.min.js"></script>
+      <script src="./static/trees/trees.js"></script>
+  </head>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.specialolympics.sk.ca/"><img src="https://pbs.twimg.com/profile_images/463397113695465472/4ii75wKW.jpeg" class="media-object" style="width:40px"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="athlete_main.html">Home</a></li>
+        <li><a href="athlete_training.html">Training</a></li>
+        <li><a href="athlete_nutrition.html">Nutrition</a></li>
+        <li><a href="#">Update</a></li>
+		<li><a href="#">Security</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+        <img class="img-circle" src="<%=user.picture%>"/>
+        <br>
+        <h3><%= user.name %></h3>
+    </div>
+    <div class="col-sm-8 text-left">
+        <div id="sketch-holder">
+      <!-- Our sketch will go here! -->
+        </div>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+	  Recent Addition
+      </div>
+	  <div class="well">
+        <p>Recent Addition</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -69,7 +69,8 @@ var cp;
 var boxes = new Array();
 var trees = new Array();
 function setup() {
-    createCanvas(800, 600, WEBGL);
+    var canvas = createCanvas(800, 600, WEBGL);
+    canvas.parent('sketch-holder');
     ortho(-width/2, width/2, height/2, -height/2, 0.1, 100);
     for (var rows = 0;rows<10;rows++) {
         for (var cols = 0;cols<10;cols++) {
