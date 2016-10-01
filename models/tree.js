@@ -1,24 +1,27 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var goalSchema = Schema({
-    goalId: {
+var treeSchema = Schema({
+    treeId: {
         type: String,
         required: true
     },
-	facebookId: {
+	forestId: {
 		type: String,
 		required: true
 	},
-	name: {
-		type: String,
+	posX: {
+		type: Number,
 		required: true
 	},
-    days: {
+    posY: {
+		type: Number,
+		required: true
+	},
+    stage: {
         type: Number,
         required: true
-    },
-    data: [String]
+    }
 });
 
-module.exports = mongoose.model('Goal', goalSchema);
+module.exports = mongoose.model('Tree', treeSchema);

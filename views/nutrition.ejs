@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Profile</title>
-  <head>
-      <% include ./header %>
-      <script src="./static/trees/p5.min.js"></script>
-  </head>
+  <title>Nutrition Information</title>
+  <style>
+  .fatsecret_container {
+      border: none !important;
+  }
+  </style>
+  <% include ./header %>
 </head>
 <body>
 
@@ -21,9 +23,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="./profile">Profile</a></li>
+        <li><a href="./profile">Profile</a></li>
         <li><a href="./training">Training</a></li>
-        <li><a href="./nutrition">Nutrition</a></li>
+        <li class="active"><a href="./nutrition">Nutrition</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li style="font-size: 12pt; color: white;margin-top: 10px;">Public Access Code: 5xf3M8</li>
@@ -43,11 +45,8 @@
         <h4>Weight: 175lbs</h4></center>
     </div>
     <div class="col-sm-7 text-left">
-        <h2> <%=user.name%>'s September Progress </h2>
-        <h4>Workouts completed: 14, Workouts left this month: 8</h4>
-        <div id="sketch-holder">
-      <!-- Our sketch will go here! -->
-        </div>
+        <h2>Nutrition Tracking</h2>
+        <div id="my_container" class="fatsecret_container"></div>
     </div>
     <div class="col-sm-3 sidenav">
         <h3>Today's Tasks</h3>
@@ -68,8 +67,9 @@
   </div>
 </div>
 
-<script>
-    //put workout stats in here for trees
-</script>
 <script src="./static/dailytasks.js"></script>
-<script src="./static/trees/trees.js"></script>
+<script src="http://platform.fatsecret.com/js?key=1093cde450ac4ac38355bacf7daea2d9&auto_load=true"></script>
+<script>
+fatsecret.setContainer("my_container");
+fatsecret.setCanvas("home");
+</script>

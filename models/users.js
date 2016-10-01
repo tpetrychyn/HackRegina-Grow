@@ -15,13 +15,6 @@ var userSchema = Schema({
 		type: String,
 		required: true
 	},
-	group: {
-		type: String,
-		required: true
-	},
-	phoneNumber: {
-		type: String
-	},
 	email: {
 		type: String
 	},

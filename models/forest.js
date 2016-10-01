@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var goalSchema = Schema({
-    goalId: {
+var forestSchema = Schema({
+    forestId: {
         type: String,
         required: true
     },
@@ -13,12 +13,7 @@ var goalSchema = Schema({
 	name: {
 		type: String,
 		required: true
-	},
-    days: {
-        type: Number,
-        required: true
-    },
-    data: [String]
+	}
 });
 
-module.exports = mongoose.model('Goal', goalSchema);
+module.exports = mongoose.model('Forest', forestSchema);

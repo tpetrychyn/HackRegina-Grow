@@ -1,21 +1,3 @@
-<!--<head>
-    <% include ./header %>
-</head>
-
-<p>
-ID: <%= user.id %><br/>
-<img class="img-circle" src="<%=user.picture%>"/>
-Username: <%= user.name %><br/>
-Name: <%= user.picture %><br/>
-<% if (user.emails) { %>
-Email: <%= user.emails[0].value %><br/>
-<% } %>
-</p>
-
-<script>
-var test = "<%=user.name%>";
-</script>-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,8 +34,7 @@ var test = "<%=user.name%>";
       <ul class="nav navbar-nav">
         <li><a href="./profile">Profile</a></li>
         <li class="active"><a href="./training">Training</a></li>
-        <li><a href="athlete_nutrition.html">Nutrition</a></li>
-        <li><a href="#">Update</a></li>
+        <li><a href="./nutrition">Nutrition</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li style="font-size: 12pt; color: white;margin-top: 10px;">Public Access Code: 5xf3M8</li>
@@ -74,43 +55,18 @@ var test = "<%=user.name%>";
     </div>
     <div class="col-sm-7 text-left">
         <h2>Weekly Training Progress <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" style="float: right;" data-toggle="modal" data-target="#myModal">
-  Add new
-</button></h2>
+        <button type="button" class="btn btn-primary btn-lg" style="float: right;" data-toggle="modal" data-target="#myModal">
+          Add new
+        </button></h2>
         <text style="font-size: 9pt">Click value to edit</text>
-        <div class="well">
-        <h4><b>Goal: 5.25s 100m Run</b></h4>
-
-  	  <label>Day 1: <label class="edit" style="display: inline;">5.20s</label></label></br>
-  	  <label>Day 2: <label class="edit" style="display: inline;">5.10s</label></label></br>
-      <label>Day 3: <label class="edit" style="display: inline;">5.32s</label></label></br>
-      <label>Day 4: <label class="edit" style="display: inline;">5.0s</label></label></br>
-      <label>Day 5: <label class="edit" style="display: inline;">5.2s</label></label></br>
-  	  </div>
-  	  <div class="well">
-          <h4><b>Goal: 5x 225lb deadlift</b></h4>
-    	  <label>Day 1: 4</label></br>
-    	  <label>Day 2: 5</label></br>
-    	  <label>Day 3: 6</label></br>
-    	  <label>Day 4: 5</label></br>
-    	  <label>Day 5: 7</label></br>
-  	  </div>
-  	  <div class="well">
-          <h4><b>Goal: 5.25s 100m Run</b></h4>
-    	  <label>Day 1: 5.20s</label></br>
-    	  <label>Day 2: 5.18s</label></br>
-    	  <label>Day 3: 5.15s</label></br>
-    	  <label>Day 4: 5.15s</label></br>
-    	  <label>Day 5: 5.16s</label></br>
-  	  </div>
-  	  <div class="well">
-          <h4><b>Goal: 5.25s 100m Run</b></h4>
-    	  <label>Day 1: 5.20s</label></br>
-    	  <label>Day 2: 5.18s</label></br>
-    	  <label>Day 3: 5.15s</label></br>
-    	  <label>Day 4: 5.15s</label></br>
-    	  <label>Day 5: 5.16s</label></br>
-  	  </div>
+        <% for(var i=0; i<goals.length; i++) { %>
+            <div class="well" id="<%=goals[i].goalId%>">
+            <h4><b>Goal: <%= goals[i].name %></b></h4>
+            <% for(var x=0; x<goals[i].days; x++) { %>
+          	  <label>Day <%=x+1%>: <label class="edit" id="<%=goals[i].goalId%>,<%=x%>" style="display: inline;"><%=goals[i].data[x]%></label></label></br>
+            <%}%>
+            </div>
+        <%}%>
     </div>
     <div class="col-sm-3 sidenav">
         <h3>Today's Tasks</h3>
@@ -173,9 +129,9 @@ var test = "<%=user.name%>";
 <script src="./static/training.js"></script>
 <script src="./static/dailytasks.js"></script>
 <script>
+var goals = <%- JSON.stringify(goals) %>;
 $('.edit').editable(function(value, settings) {
-    console.log(this);
-    console.log(value);
+    updateGoalData(this.id.split(',')[0],this.id.split(',')[1], value);
     console.log(settings);
     return(value);
  });

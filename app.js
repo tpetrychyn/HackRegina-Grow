@@ -6,6 +6,8 @@ var shortid = require('shortid');
 
 var User = require('./models/users');
 var Goal = require('./models/goal');
+var Forest = require('./models/forest');
+var Tree = require('./models/tree');
 
 var dbURL = 'mongodb://hackregina:hackmebaby@ds047146.mlab.com:47146/heroku_dhxp13b4';
 
@@ -33,8 +35,7 @@ passport.use(new Strategy({
     			submission = new User({
     				facebookId: profile.id,
     				name: profile.displayName,
-    				picture: "https://graph.facebook.com/" + profile.id + "/picture" + "?width=200&height=200" + "&access_token=" + accessToken,
-    				group: 'user'
+    				picture: "https://graph.facebook.com/" + profile.id + "/picture" + "?width=200&height=200" + "&access_token=" + accessToken
     			});
     		} else {
     			//This should update users names if they change it on FB, can't really test
@@ -120,11 +121,37 @@ app.get('/profile',
     res.render('profile', { user: req.user });
  });
 
- app.get('/training',
+ app.get('/nutrition',
    require('connect-ensure-login').ensureLoggedIn(),
    function(req, res){
-     res.render('training', { user: req.user });
+     res.render('nutrition', { user: req.user });
   });
+
+app.get('/training',
+require('connect-ensure-login').ensureLoggedIn(),
+function(req, res){
+   Goal.find({'facebookId': req.user.facebookId}).exec(function(err, _goals) {
+  		if (err) console.log(err);
+        console.log(_goals);
+  		res.render('training', {
+  		goals: _goals,
+  		user: req.user
+  		});
+  	});
+});
+
+app.get('/forest',
+require('connect-ensure-login').ensureLoggedIn(),
+function(req, res){
+    Goal.find({'facebookId': req.user.facebookId}).exec(function(err, _goals) {
+           if (err) console.log(err);
+         console.log(_goals);
+           res.render('training', {
+           goals: _goals,
+           user: req.user
+           });
+       });
+});
 
 app.post('/training',
     require('connect-ensure-login').ensureLoggedIn(),
@@ -142,6 +169,20 @@ app.post('/training',
   		if (err) console.log(err);
   		else res.send(200, _goalId);
   	});
+});
+
+app.post('/training/data',
+    require('connect-ensure-login').ensureLoggedIn(),
+    function(req, res){
+        Goal.findOne({'goalId': req.body.goalId}).exec(function(err, goal) {
+       		if (err) console.log(err);
+            goal.data[req.body.dataId] = req.body.val;
+            goal.markModified('data');
+            goal.save(function(err) {
+          		if (err) console.log(err);
+          		else res.sendStatus(200);
+          	});
+       	});
 });
 
 app.use('/static', express.static(__dirname + '/static'));
