@@ -3,136 +3,135 @@
 <head>
   <title>Training Progress</title>
   <head>
-      <% include ./header %>
-      <script src="./static/trees/p5.min.js"></script>
-      <style>
-      .edit form {
-          display: inline !important;
-          width: 150px;
-          height: auto;
-      }
-      .edit form input {
-          width: auto !important;
-          height: auto !important;
-      }
-      </style>
+    <% include ./header %>
+    <script src="./static/trees/p5.min.js"></script>
+    <style>
+    .edit form {
+      display: inline !important;
+      width: 150px;
+      height: auto;
+    }
+    .edit form input {
+      width: auto !important;
+      height: auto !important;
+    }
+    </style>
   </head>
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="http://www.specialolympics.sk.ca/"><img src="./static/images/Special_Olympics_logo_white_400.png" class="media-object" style="width:60px"></a>
+  <body>
+    <div class="header-shadow">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.specialolympics.sk.ca/"><img src="images/Special_Olympics_logo_white_400.png" class="media-object" style="width:60px"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li><a href="./profile">Profile</a></li>
+              <li class="active"><a href="./training">Training</a></li>
+              <li><a href="./nutrition">Nutrition</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a>Public Access Code: 5xf3M8</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="./profile">Profile</a></li>
-        <li class="active"><a href="./training">Training</a></li>
-        <li><a href="./nutrition">Nutrition</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li style="font-size: 12pt; color: white;margin-top: 10px;">Public Access Code: 5xf3M8</li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="container-fluid text-center">
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-        <img class="img-circle" src="<%=user.picture%>"/>
-        <br>
-        <center><h2><%= user.name %></h2>
-        <h3>Swimmer</h3>
-        <h4>Height: 5'9"</h4>
-        <h4>Weight: 175lbs</h4></center>
-    </div>
-    <div class="col-sm-7 text-left">
-        <h2>Weekly Training Progress <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" style="float: right;" data-toggle="modal" data-target="#myModal">
-          Add new
-        </button></h2>
-        <text style="font-size: 9pt">Click value to edit</text>
-        <% for(var i=0; i<goals.length; i++) { %>
-            <div class="well" id="<%=goals[i].goalId%>">
-            <h4><b>Goal: <%= goals[i].name %></b></h4>
-            <% for(var x=0; x<goals[i].days; x++) { %>
-          	  <label>Day <%=x+1%>: <label class="edit" id="<%=goals[i].goalId%>,<%=x%>" style="display: inline;"><%=goals[i].data[x]%></label></label></br>
-            <%}%>
-            </div>
-        <%}%>
-    </div>
-    <div class="col-sm-3 sidenav">
-        <h3>Today's Tasks</h3>
-        <div class="well" style="max-height: 800px;overflow: auto; text-align: left">
-        		<ul id="todolist" class="list-group checked-list-box">
-                  <li class="list-group-item">10 x 100m Sprint</li>
-                  <li class="list-group-item">20 Laps Swimming</li>
-                </ul>
-                <div id="addNew">
-                    <input type="text" id="addItemText" style="width: 73.3333333%; margin-right: 3px;" class="form-control add-todo col-sm-8" placeholder="Add Item"><button id="addItem" class="btn btn-success col-sm-3">Add</button>
+    <div class="container-fluid text-center">
+      <div class="row content">
+        <div class="col-sm-2 sidenav">
+          <img class="img-circle" src="<%=user.picture%>"/>
+          <br>
+          <center><h2><%= user.name %></h2>
+            <h3>Swimmer</h3>
+            <h4>Height: 5'9"</h4>
+            <h4>Weight: 175lbs</h4></center>
+          </div>
+          <div class="col-sm-7 text-left">
+            <h2>Weekly Training Progress <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary btn-lg" style="float: right;" data-toggle="modal" data-target="#myModal">
+                Add new
+              </button></h2>
+              <text style="font-size: 9pt">Click value to edit</text>
+              <% for(var i=0; i<goals.length; i++) { %>
+                <div class="well" id="<%=goals[i].goalId%>">
+                  <h4><b>Goal: <%= goals[i].name %></b></h4>
+                  <% for(var x=0; x<goals[i].days; x++) { %>
+                    <label>Day <%=x+1%>: <label class="edit" id="<%=goals[i].goalId%>,<%=x%>" style="display: inline;"><%=goals[i].data[x]%></label></label></br>
+                    <%}%>
+                  </div>
+                  <%}%>
                 </div>
-                &nbsp;<hr style="margin-top: 0px; margin-bottom: 10px;">
-                <div class="text-center">
-                    <button id="get-checked-data" class="btn btn-primary">Submit</button>
+                <div class="col-sm-3 sidenav">
+                  <h3>Today's Tasks</h3>
+                  <div class="well" style="max-height: 800px;overflow: auto; text-align: left">
+                    <ul id="todolist" class="list-group checked-list-box">
+                      <li class="list-group-item">10 x 100m Sprint</li>
+                      <li class="list-group-item">20 Laps Swimming</li>
+                    </ul>
+                    <div id="addNew">
+                      <input type="text" id="addItemText" style="width: 73.3333333%; margin-right: 3px;" class="form-control add-todo col-sm-8" placeholder="Add Item"><button id="addItem" class="btn btn-success col-sm-3">Add</button>
+                    </div>
+                    &nbsp;<hr style="margin-top: 0px; margin-bottom: 10px;">
+                    <div class="text-center">
+                      <button id="get-checked-data" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-    </div>
-  </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="workout-name" class="form-control-label">Goal Name</label>
-              <input type="text" class="form-control" id="goal-name">
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="workout-name" class="form-control-label">Goal Name</label>
+                        <input type="text" class="form-control" id="goal-name">
+                      </div>
+                      <div class="form-group">
+                        <label for="sel1">How many days a week?</label>
+                        <select class="form-control" id="days-sel">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                        </select>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="add-new-goal" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="sel1">How many days a week?</label>
-              <select class="form-control" id="days-sel">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-              </select>
-            </div>
-          </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="add-new-goal" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<script src="./static/jeditable.min.js"></script>
-<script src="./static/training.js"></script>
-<script src="./static/dailytasks.js"></script>
-<script>
-var goals = <%- JSON.stringify(goals) %>;
-$('.edit').editable(function(value, settings) {
-    updateGoalData(this.id.split(',')[0],this.id.split(',')[1], value);
-    console.log(settings);
-    return(value);
- });
-</script>
+            <script src="./static/jeditable.min.js"></script>
+            <script src="./static/training.js"></script>
+            <script src="./static/dailytasks.js"></script>
+            <script>
+            var goals = <%- JSON.stringify(goals) %>;
+            $('.edit').editable(function(value, settings) {
+              updateGoalData(this.id.split(',')[0],this.id.split(',')[1], value);
+              console.log(settings);
+              return(value);
+            });
+            </script>
