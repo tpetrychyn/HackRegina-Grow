@@ -17,7 +17,7 @@ var dbURL = 'mongodb://hackregina:hackmebaby@ds047146.mlab.com:47146/heroku_dhxp
 passport.use(new Strategy({
     clientID: '1062987243814970',
     clientSecret: 'e54d86629d66f84d66b9662e44d8aec8',
-    callbackURL: "http://localhost:3000/login/facebook/return"
+    callbackURL: "./login/facebook/return"
   },
   function(accessToken, refreshToken, profile, done) {
   	//Check for user profile based on facebookId
