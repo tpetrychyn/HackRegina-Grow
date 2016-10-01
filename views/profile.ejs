@@ -3,73 +3,75 @@
 <head>
   <title>Profile</title>
   <head>
-      <% include ./header %>
-      <script src="./static/trees/p5.min.js"></script>
+    <% include ./header %>
+    <script src="./static/trees/p5.min.js"></script>
   </head>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="http://www.specialolympics.sk.ca/"><img src="https://pbs.twimg.com/profile_images/463397113695465472/4ii75wKW.jpeg" class="media-object" style="width:40px"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="./profile">Profile</a></li>
-        <li><a href="./training">Training</a></li>
-        <li><a href="./nutrition">Nutrition</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li style="font-size: 12pt; color: white;margin-top: 10px;">Public Access Code: 5xf3M8</li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="container-fluid text-center">
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-        <img class="img-circle" src="<%=user.picture%>"/>
-        <br>
-        <center><h2><%= user.name %></h2>
-        <h3>Swimmer</h3>
-        <h4>Height: 5'9"</h4>
-        <h4>Weight: 175lbs</h4></center>
-    </div>
-    <div class="col-sm-7 text-left">
-        <h2> <%=user.name%>'s September Progress </h2>
-        <h4>Workouts completed: 14, Workouts left this month: 8</h4>
-        <div id="sketch-holder">
-      <!-- Our sketch will go here! -->
+  <body>
+    <div class="header-shadow">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.specialolympics.sk.ca/"><img src="images/Special_Olympics_logo_white_400.png" class="media-object" style="width:60px"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="./profile">Profile</a></li>
+              <li><a href="./training">Training</a></li>
+              <li><a href="./nutrition">Nutrition</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a>Public Access Code: 5xf3M8</a></li>
+            </ul>
+          </div>
         </div>
+      </nav>
     </div>
-    <div class="col-sm-3 sidenav">
-        <h3>Today's Tasks</h3>
-        <div class="well" style="max-height: 800px;overflow: auto; text-align: left">
-        		<ul id="todolist" class="list-group checked-list-box">
-                  <li class="list-group-item">10 x 100m Sprint</li>
-                  <li class="list-group-item">20 Laps Swimming</li>
-                </ul>
-                <div id="addNew">
-                    <input type="text" id="addItemText" style="width: 73.3333333%; margin-right: 3px;" class="form-control add-todo col-sm-8" placeholder="Add Item"><button id="addItem" class="btn btn-success col-sm-3">Add</button>
-                </div>
-                &nbsp;<hr style="margin-top: 0px; margin-bottom: 10px;">
-                <div class="text-center">
-                    <button id="get-checked-data" class="btn btn-primary">Submit</button>
-                </div>
+    <div class="container-fluid text-center">
+      <div class="row content">
+        <div class="col-sm-2 sidenav">
+          <img class="img-circle" src="<%=user.picture%>"/>
+          <br>
+          <center><h2><%= user.name %></h2>
+            <h3>Swimmer</h3>
+            <h4>Height: 5'9"</h4>
+            <h4>Weight: 175lbs</h4></center>
+          </div>
+          <div class="col-sm-7 text-left">
+            <h2> <%=user.name%>'s September Progress </h2>
+            <h4>Workouts completed: 14, Workouts left this month: 8</h4>
+            <div id="sketch-holder">
+              <!-- Our sketch will go here! -->
             </div>
-    </div>
-  </div>
-</div>
+          </div>
+          <div class="col-sm-3 sidenav">
+            <h3>Today's Tasks</h3>
+            <div class="well" style="max-height: 800px;overflow: auto; text-align: left">
+              <ul id="todolist" class="list-group checked-list-box">
+                <li class="list-group-item">10 x 100m Sprint</li>
+                <li class="list-group-item">20 Laps Swimming</li>
+              </ul>
+              <div id="addNew">
+                <input type="text" id="addItemText" style="width: 73.3333333%; margin-right: 3px;" class="form-control add-todo col-sm-8" placeholder="Add Item"><button id="addItem" class="btn btn-success col-sm-3">Add</button>
+              </div>
+              &nbsp;<hr style="margin-top: 0px; margin-bottom: 10px;">
+              <div class="text-center">
+                <button id="get-checked-data" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<script>
-    //put workout stats in here for trees
-</script>
-<script src="./static/dailytasks.js"></script>
-<script src="./static/trees/trees.js"></script>
+      <script>
+      //put workout stats in here for trees
+      </script>
+      <script src="./static/dailytasks.js"></script>
+      <script src="./static/trees/trees.js"></script>

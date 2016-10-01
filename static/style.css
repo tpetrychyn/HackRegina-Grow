@@ -37,3 +37,128 @@ footer {
 .spacer {
     margin-top: 0px; /* define margin as you see fit */
 }
+
+.header-shadow {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  position: relative;
+  z-index: 2;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  min-height: 75px !important;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0px !important;
+    padding-bottom: 0 !important;
+    height: 75px;
+    line-height: 75px;
+    font-size: 12pt;
+}
+
+.navbar-brand {
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
+  height: 75px;
+  line-height: 75px;
+}
+
+.navbar-toggle {
+  margin-top: 20.5px;
+  margin-bottom: 20.5px;
+}
+
+.navbar-inverse {
+  background-color: #D91E18;
+  border: 0px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #dbdbdb;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+  color: #fff;
+  background-color: #96281B;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: #96281B;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #96281B;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #96281B;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
+}
+
+.row .content {
+  position: relative;
+  z-index: 1;
+}
+
+.sidenav {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+/*fatsecret decoration*/
+
+.fatsecret_container .fatsecret_heading {
+    background-color: #D2D7D3 !important;
+}
+
+.fatsecret_footer {
+    background-color: #D2D7D3 !important;
+}
+
+.fatsecret_container input.fatsecret_button {
+    border: 1px solid #6C7A89 !important;
+    background-color: #D2D7D3 !important;
+}
+
+#fatsecret_nav td {
+    border-left: 1px solid #ABB7B7 !important;
+}
+
+.fatsecret_nav_highlight {
+    background-color: #ABB7B7 !important;
+}
+
+.fatsecret_container A {
+    color: #000 !important;
+}
+
+.fatsecret_home_summary {
+    border: 2px solid #6C7A89 !important;
+}
