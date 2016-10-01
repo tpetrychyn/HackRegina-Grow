@@ -106,6 +106,12 @@ app.get('/login',
     res.render('login');
   });
 
+ app.get('/logout', function (req, res){
+  req.session.destroy(function (err) {
+    res.redirect('/'); //Inside a callback… bulletproof!
+  });
+});
+
 app.get('/login/facebook',
   passport.authenticate('facebook'));
 
