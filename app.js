@@ -120,6 +120,6 @@ app.get('/profile',
 
 app.use('/static', express.static(__dirname + '/static'));
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT || 3000, function(){
+  console.log('listening on', app.get('port'));
 });
